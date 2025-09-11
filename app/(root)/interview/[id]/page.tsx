@@ -5,7 +5,7 @@ import Agent from "@/components/Agent";
 import { getRandomInterviewCover } from "@/lib/utils";
 
 import {
-    getFeedbackbyInterviewId,
+    getFeedbackByInterviewId,
     getInterviewById,
 } from "@/lib/actions/general.action";
 import { getCurrentUser } from "@/lib/actions/auth.action";
@@ -19,7 +19,7 @@ const InterviewDetails = async ({ params }: RouteParams) => {
     const interview = await getInterviewById(id);
     if (!interview) redirect("/");
 
-    const feedback = await getFeedbackbyInterviewId({
+    const feedback = await getFeedbackByInterviewId({
         interviewId: id,
         userId: user?.id!,
     });
