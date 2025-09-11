@@ -1,29 +1,27 @@
-import React from 'react'
-import {getCurrentUser} from "@/lib/actions/auth.action";
-import {getFeedbackbyInterviewId, getInterviewById} from "@/lib/actions/general.action";
-import {redirect} from "next/navigation";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import dayjs from "dayjs";
+import Link from "next/link";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 
-
+import {
+    getFeedbackbyInterviewId,
+    getInterviewById,
+} from "@/lib/actions/general.action";
+import { Button } from "@/components/ui/button";
+import { getCurrentUser } from "@/lib/actions/auth.action";
 
 const Feedback = async ({ params }: RouteParams) => {
     const { id } = await params;
     const user = await getCurrentUser();
 
     const interview = await getInterviewById(id);
-    if (!interview) redirect('/');
+    if (!interview) redirect("/");
 
     const feedback = await getFeedbackbyInterviewId({
         interviewId: id,
-        userId: user!.id!,
+        userId: user!.id,
     });
 
-    // console.log(feedback);
-
-    
     return (
         <section className="section-feedback">
             <div className="flex flex-row justify-center">
@@ -117,4 +115,5 @@ const Feedback = async ({ params }: RouteParams) => {
         </section>
     );
 };
+
 export default Feedback;
