@@ -8,7 +8,10 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { Button } from "@/components/ui/button"
-import { Form } from "@/components/ui/form"
+import {
+    Form,
+
+} from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import {toast} from "sonner";
 import FormField from "@/components/FormField";
@@ -60,8 +63,8 @@ const AuthForm = ({ type }: { type: FormType }) => {
 
                 })
 
-                if(!result.success) {
-                    toast.error(result.message);
+                if(!result?.success) {
+                    toast.error(result?.message);
                     return;
                 }
 
@@ -96,7 +99,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
             console.log(error);
             toast.error(`There was an error: ${error}`)
         }
-       // console.log(values)
+        console.log(values)
     }
 
     const isSignIn = type === 'sign-in';
@@ -105,7 +108,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
         <div className="card-border lg:min-w-[566px]">
             <div className="flex flex-col gap-6 card py-14 px-10">
                 <div className="flex flex-row gap-2 justify-center">
-                    <Image src="/logo.svg" alt="logo" height={32} width={38} />
+                    <img src="/logo.svg" alt="logo" height={32} width={38} />
                     <h2 className="text-primary-100">Prep Wise</h2>
                 </div>
                 <h3>Practice job interview with AI</h3>
@@ -118,8 +121,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
                             <FormField control={form.control}
                                        name="name"
                                        label="Name"
-                                       placeholder="Your Name"
-                                        type="text"/>
+                                       placeholder="Your Name" />
                         )}
 
                         <FormField control={form.control}
